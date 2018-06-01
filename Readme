@@ -1,0 +1,28 @@
+
+
+Dependencies:
+   python 3.6
+   Anaconda - https://www.anaconda.com/download/#windows  
+   Conda install -c gdal
+
+
+
+To run :
+ 
+ a) If you want to see the segmented images :
+ 
+   1)Enter " jupyter notebook ". 
+   2)Open Script.py.
+   3) UnComment line no 109.
+   4) Enter the input fields I've marked ( <- )
+   5) Ctrl+Enter to run.
+
+ b) To just see the excel sheets: 
+   
+   1) Open Script.py
+   2) Enter the input fields I've marked ( <- ).
+   3) Run the Script .py file.
+ 
+ 
+
+
