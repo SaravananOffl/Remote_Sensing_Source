@@ -4,7 +4,7 @@ import numpy as np
 import os
 import cv2
 
-path = 'H:/Bachmanity_Games/purdue/Input_Files/718/r1_0002_0010.tif'  # <- GIVE INPUT HERE
+path = 'H:/Bachmanity_Games/purdue/Input_Files/718/r1_0000_0005.tif'  # <- GIVE INPUT HERE
 # path = 'H:/Bachmanity_Games/purdue/Input_Files/718/r1_0000_0005.tif'  # <- GIVE INPUT HERE
 
 # path = 'H:/Bachmanity_Games/purdue/Input_Files/718/r1_0002_0010.tif'  # <- GIVE INPUT HERE
@@ -51,7 +51,7 @@ count_xx = 0
 for i in range(band1.shape[0]):
     for j in range(band1.shape[1]-1):
 
-        if(band1[i][j] and band1[i][j+1] and band1[i][j+1]):  # 1110
+        if(band1[i][j] and band1[i][j+1]):  # 1110
                 # count_xx = count_xx+1
                 binary_image[i][j] = 1
                 # print(f"{i},{j}")
@@ -63,10 +63,7 @@ for i in range(band1.shape[0]):
 
     # print(f'Total Count in {i}th row is ', count_x[i] )
 
-# plt.imshow(band1)
-# # x_name = np.arange(0,85,1)
-# plt.xticks(x_name)
-# # plt.scatter(3,54)
+
 # plt.show()
 
 # plt.figure()
@@ -81,8 +78,33 @@ edge = cv2.Canny(np.uint8(binary_image), 0, 0.5)
 # fig = plt.figure()
 # fig.show()
 # fig.canvas.draw()
-plt.imshow(edge, cmap='gray')
-plt.title("Edge")
+
+# fig, ax = plt.subplots()
+# f, (ax1,ax2,ax3)  = plt.subplots(1,3,sharey =True)
+# ax1.imshow(band1)
+# # # x_name = np.arange(0,85,1)
+# ax1.set_title("oriiginal")
+# # # plt.scatter(3,54)
+# ax2.imshow(binary_image, cmap='gray')
+# ax2.set_title("Binary Image")
+# ax3.imshow(edge, cmap='gray')
+# ax3.set_title("Edge")
+
+plt.subplot(221)
+plt.imshow(band4, 'copper')
+plt.title("Original")
+# plt.set_facecolor('xkcd:salmon')
+plt.subplot(222)
+plt.imshow(binary_image, 'copper')
+plt.title("Binary Image")
+
+plt.subplot(223)
+plt.imshow(edge, 'copper')
+plt.title("Edge Image")
+
+plt.subplot(224)
+plt.imshow(edge, 'copper')
+plt.title("Identified Left and Right Pixel")
 matrix = np.zeros([83, 20])
 for i in range(edge.shape[0]):
         j = -1
