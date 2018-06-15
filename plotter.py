@@ -4,7 +4,7 @@ import numpy as np
 import os
 import cv2
 
-path = 'H:/Bachmanity_Games/purdue/Input_Files/718/r2_0000_0009.tif' # <- GIVE INPUT HERE 
+path = 'H:/Bachmanity_Games/purdue/Input_Files/718/r1_0000_0009.tif' # <- GIVE INPUT HERE 
 
 
 
@@ -41,21 +41,21 @@ band4 = np.array(band4,dtype=np.float64)
 
 print(band1.shape)
 
-binary_image = np.zeros([82,83],dtype = float)
+binary_image = np.zeros([100,110],dtype = float)
 
 count_x = []
 count_xx=0
 for i in range(band1.shape[0]):
     for j in range(band1.shape[1]-1):
         if(band1[i][j] and band1[i][j+1] and band1[i][j+1]): # 1110
-                count_xx = count_xx+1
+                # count_xx = count_xx+1
                 binary_image[i][j] = 1 
                 # print(f"{i},{j}")
                 # plt.scatter(j,i,color="blue")
 
         # print(i)
-    count_x.append(count_xx)
-    count_xx=0
+#     count_x.append(count_xx)
+#     count_xx=0
 
 
 
@@ -82,7 +82,7 @@ edge= cv2.Canny(np.uint8(binary_image),0,0.5)
 # fig.canvas.draw()
 plt.imshow(edge, cmap='gray')
 plt.title("Edge")
-matrix = np.zeros([83,10])
+matrix = np.zeros([83,11])
 for i in range(edge.shape[0]):
         j = 0
         m = 0
@@ -104,8 +104,8 @@ for i in range(edge.shape[0]):
                         #   and edge[i][k+1]==0):
 
                                 plt.scatter(k,i,color = "green", s=5)
-                                print("K value is ", k)
-                                print("J value is" , j,'\n')
+                                # print("K value is ", k)
+                                # print("J value is" , j,'\n')
                                 # print("found right")
                                 # print(i,j,'\n')
                                 # diff = (i,k) - (i,j)
