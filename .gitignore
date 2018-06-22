@@ -7,9 +7,5 @@
 718_rep1.7z
 718_rep2.7z
 808.7z
-718_file_Mean_Median.xls
-726_file_Mean_Median.xls
-818_file_Mean_Median.xls
-Area.xls
-All_Days_and_Data.xls 
-SOYABEAN_BOOK.xlsx
+*.xls
+*.xlsx
