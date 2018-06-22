@@ -23,6 +23,7 @@ for i in range(band1.shape[0]):
                     band2[i][j] = 0
                     band3[i][j] = 0
                     band4[i][j] = 0
+                    
 
 plt.imshow(band4, 'copper')
 plt.title("Original")
