@@ -2,8 +2,7 @@ import gdal
 import matplotlib.pyplot as plt
 import numpy as np
 
-path = r'H:\Bachmanity_Games\purdue\Input_Files\718\r2_0000_0000.tif'
-# path = r'H:\Bachmanity_Games\purdue\Input_Files\718\r3_0000_0011.tif'
+path = "path.tif"
 
 raster = gdal.Open(path)
 
@@ -18,7 +17,7 @@ band4 = band[3]
 
 for i in range(band1.shape[0]):
     for j in range(band1.shape[1]):
-           if(band4[i][j]<=0.4): 
+           if(band4[i][j]<=0.39): 
                     band1[i][j] = 0
                     band2[i][j] = 0
                     band3[i][j] = 0
@@ -39,22 +38,21 @@ if(np.count_nonzero(new_mat)>1):
                         print(f'Left pixel found at {i}, Value is :  {new_mat[i]}')
                         for z in range(i+1,new_mat.shape[0]-1):
                                 print(f'    checking  {z},  value is :{new_mat[z]}')
+
+                                if((z-i)>=13 ):
+                                        value = int((z-i+1)/2)
+                                        length_matrix.append(new_mat[i+value])
+                                        i = z 
+                                       
+
                                 if(new_mat[z] and new_mat[z+1]==0):#10
-                                
+                                        length = int(z-i)
                                         value = int((z-i+1)//2)
                                         print(f"Found right....  Center Index {value+i}, value is {new_mat[value+i]} \n " )
                                         if(value!=1):
-                                                # if(value%2 ==0):
-                                                #         value = int(value/2)
-                                                # else:
-                                                #         value =int((value+1)/2)
-                                                
-                                                # print('value after ' , value)
-                                                # print(z-i+1, new_mat[i+value])
                                                 length_matrix.append(new_mat[i+value])
-                                                if((value*2)>9):
-                                                        length_matrix.append(new_mat[i+value*2+value])
-                                                i = i +z 
+                                                i = z
+                                        
                                         break
                 
 

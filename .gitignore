@@ -6,6 +6,10 @@
 718.7z
 718_rep1.7z
 718_rep2.7z
+726.7z
 808.7z
 *.xls
 *.xlsx
+.ipynb_checkpoints/
+finalmodel/
+finalmodel.zip

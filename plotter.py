@@ -17,7 +17,7 @@ path = r'H:\Bachmanity_Games\purdue\Input_Files\718\r1_0000_0000.tif' #input ima
 
 raster = gdal.Open(path)
 
-band = []
+band = []       
 for i in range(raster.RasterCount):
         # The tiff image is read as an array
         band.append(raster.GetRasterBand(i+1).ReadAsArray())
@@ -29,12 +29,12 @@ band4 = band[3]
 
 for i in range(band1.shape[0]):
     for j in range(band1.shape[1]):
-            ''' 
+        ''' 
                  The preprocessed image is segmented in 
                  this loop. 
-            '''
+        '''
 
-           if(band4[i][j] <= 0.35):  #0.35 is the threshold
+        if(band4[i][j] <= 0.35):  #0.35 is the threshold
 
                     band1[i][j] = 0
                     band2[i][j] = 0
@@ -55,6 +55,8 @@ for i in range(band1.shape[0]):
         if(band1[i][j] and band1[i][j+1]):  # 1110
                 binary_image[i][j] = 1
 
+kernel = np.ones((5,5),np.float32)/25
+band4  = cv2.filter2D(band4,-1,kernel)
 edge = cv2.Canny(np.uint8(binary_image), 0, 0.5)
 
 
