@@ -2,7 +2,7 @@ import gdal
 import matplotlib.pyplot as plt
 import numpy as np
 
-path = "path.tif"
+path = r'H:\Bachmanity_Games\purdue\Input_Files\718\r1_0010_0012.tif'
 
 raster = gdal.Open(path)
 
@@ -29,7 +29,7 @@ plt.title("Original")
 new_mat = np.count_nonzero(band4, axis = 0)
 new_mat = np.append(0,new_mat)
 new_mat = np.append(new_mat,0)
-print(new_mat, "\n")
+
 
 length_matrix = []
 if(np.count_nonzero(new_mat)>1):
@@ -38,12 +38,10 @@ if(np.count_nonzero(new_mat)>1):
                         print(f'Left pixel found at {i}, Value is :  {new_mat[i]}')
                         for z in range(i+1,new_mat.shape[0]-1):
                                 print(f'    checking  {z},  value is :{new_mat[z]}')
-
-                                if((z-i)>=13 ):
+                                if((z-i)>=16 ):
                                         value = int((z-i+1)/2)
                                         length_matrix.append(new_mat[i+value])
                                         i = z 
-                                       
 
                                 if(new_mat[z] and new_mat[z+1]==0):#10
                                         length = int(z-i)
@@ -52,12 +50,9 @@ if(np.count_nonzero(new_mat)>1):
                                         if(value!=1):
                                                 length_matrix.append(new_mat[i+value])
                                                 i = z
-                                        
                                         break
-                
-
 else:
         length_matrix.append("NaN")
+
 print(length_matrix)
-        
 plt.show()
